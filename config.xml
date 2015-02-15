@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>nirror</name>
+	<displayName><![CDATA[Nirror]]></displayName>
+	<version><![CDATA[1.0]]></version>
+	<description><![CDATA[Record customer browsing activity. Watch in real time or replay the browsing activity later for analysis.]]></description>
+	<author><![CDATA[Antoine Dubourg]]></author>
+	<tab><![CDATA[analytics_stats]]></tab>
+	<confirmUninstall>Are you sure you want to uninstall this module?</confirmUninstall>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>
