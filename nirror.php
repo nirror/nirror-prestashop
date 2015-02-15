@@ -76,7 +76,7 @@ class Nirror extends Module
 			if ( $this->context->customer->isLogged() && Configuration::get('MODULE_NIRROR_TRACE_LOGGED_USER') )
 			{
 				$tag .= "Ni('user', 'username', '" . $cookie->email . "');\n";
-				$tag .= "Ni('user', 'clientid', '" . $this->context->customer->id . "');\n";
+				$tag .= "Ni('user', 'cid', '" . $this->context->customer->id . "');\n";
 			}
 
 			$tag .= "\n</script>";
