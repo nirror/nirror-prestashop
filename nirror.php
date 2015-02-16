@@ -69,6 +69,13 @@ class Nirror extends Module
 		if( !in_array($_SERVER['REMOTE_ADDR'], explode("\n", Configuration::get('MODULE_NIRROR_BANNED_IP'))) )
 		{
 			$tag = "\n" . '<script type="text/javascript">' . "\n";
+
+			// Shall we record form fields (password kind is *always* excluded).
+			if ( !Configuration::get('MODULE_NIRROR_RECORD_FIELDS') )
+			{
+				$tag .= '$(document).ready(function(){$(\'input\').attr(\'data-ni\', \'bind: false\');$(\'textarea\').attr(\'data-ni\', \'bind: false\');$(\'select\').attr(\'data-ni\', \'bind: false\');console.log($(\'input\').data());});';
+			}
+
 			$tag .= '(function(i,s,o,g,r,a,m){i[\'NirrorObject\']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();i[r].scriptURL=g;a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,\'script\',\'https://static.nirror.com/client/nirrorclient.js\',\'Ni\');' . "\n";
 			$tag .= 'Ni(\'site\', \'' .  Configuration::get('MODULE_NIRROR_ID')  . '\');' . "\n";
 		
@@ -78,7 +85,6 @@ class Nirror extends Module
 				$tag .= "Ni('user', 'username', '" . $cookie->email . "');\n";
 				$tag .= "Ni('user', 'cid', '" . $this->context->customer->id . "');\n";
 			}
-
 			$tag .= "\n</script>";
 		}
 		return $tag;
@@ -131,6 +137,24 @@ class Nirror extends Module
 									)
 								),
 								array(
+									'type' => 'switch',
+									'label' => $this->l('Form Field Recording'),
+									'name' => 'MODULE_NIRROR_RECORD_FIELDS',
+									'desc' => $this->l('Record keyboard events in form fields.'),
+									'values' => array(
+										array(
+											'id' => 'active_on',
+											'value' => 1,
+											'label' => $this->l('Enabled')
+										),
+										array(
+											'id' => 'active_off',
+											'value' => 0,
+											'label' => $this->l('Disabled')
+										)
+									)
+								),
+								array(
 									'type' => 'textarea',
 									'label' => $this->l('Banned IP Addresses'),
 									'name' => 'MODULE_NIRROR_BANNED_IP',
@@ -164,7 +188,8 @@ class Nirror extends Module
 		return array(
 			'MODULE_NIRROR_ID'					=> Configuration::get('MODULE_NIRROR_ID'),
 			'MODULE_NIRROR_TRACE_LOGGED_USER'	=> Configuration::get('MODULE_NIRROR_TRACE_LOGGED_USER'),
-			'MODULE_NIRROR_BANNED_IP'			=> Configuration::get('MODULE_NIRROR_BANNED_IP')
+			'MODULE_NIRROR_BANNED_IP'			=> Configuration::get('MODULE_NIRROR_BANNED_IP'),
+			'MODULE_NIRROR_RECORD_FIELDS'		=> Configuration::get('MODULE_NIRROR_RECORD_FIELDS'),
 		);
 	}
 
@@ -190,7 +215,8 @@ class Nirror extends Module
 	{
 		if ( !Configuration::deleteByName('MODULE_NIRROR_ID') ||
 			 !Configuration::deleteByName('MODULE_NIRROR_TRACE_LOGGED_USER') ||
-			 !Configuration::deleteByName('MODULE_NIRROR_BANNED_IP')
+			 !Configuration::deleteByName('MODULE_NIRROR_BANNED_IP') ||
+			 !Configuration::deleteByName('MODULE_NIRROR_RECORD_FIELDS')
 			)
 		{
 			return false;
@@ -237,7 +263,8 @@ class Nirror extends Module
 		{
 			if (Configuration::updateValue('MODULE_NIRROR_ID', $nirrorid) && 
 				Configuration::updateValue('MODULE_NIRROR_TRACE_LOGGED_USER', Tools::getValue('MODULE_NIRROR_TRACE_LOGGED_USER')) &&
-				Configuration::updateValue('MODULE_NIRROR_BANNED_IP', $iplist))
+				Configuration::updateValue('MODULE_NIRROR_BANNED_IP', $iplist) &&
+				Configuration::updateValue('MODULE_NIRROR_RECORD_FIELDS', Tools::getValue('MODULE_NIRROR_RECORD_FIELDS')))
 			{
 				$message = $this->displayConfirmation($this->l('Settings have been saved.'));
 			}
