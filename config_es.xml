@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>nirror</name>
+	<displayName><![CDATA[Nirror]]></displayName>
+	<version><![CDATA[1.0]]></version>
+	<description><![CDATA[Registra el tráfico de sus clientes. Permite verificar o consultar en tiempo real el tráfico para analizarlo.]]></description>
+	<author><![CDATA[Antoine Dubourg]]></author>
+	<tab><![CDATA[analytics_stats]]></tab>
+	<confirmUninstall>¿Desea desinstalar este módulo?</confirmUninstall>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>
