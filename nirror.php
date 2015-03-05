@@ -12,7 +12,7 @@
  * 3. Authorize 'Nirror for Prestashop' access
  * 4. Once OAuth access token is acquired, Nirror for Prestashop module 
  *   - tries to fetch a matching domain in the already registered Nirror sites
- *   - if previous steps failed, it creates a Nirror site Id automatically via 
+ *   - if previous step failed, it creates a Nirror site Id automatically via
  *     Nirror API calls.
  * 5. Confirm your Nirror account and profit from all its nice features. Enjoy! 
  */
@@ -140,8 +140,6 @@ class Nirror extends Module
 	*/
 	private function nirror_gettoken_renderForm($auth_url)
 	{
-		$options = array();
-
 		$content = '<form id="module_form" class="defaultForm form-horizontal" action="index.php?controller=AdminModules&amp;configure=nirror&amp;tab_module=analytics_stats&amp;module_name=nirror&amp;token=b35eccf99139844f43e34569c41cfa7e" method="post" enctype="multipart/form-data" novalidate>';
 		$content .= '<input type="hidden" name="submitNirrorSite" value="1" />';
 		$content .= '<div class="panel" id="fieldset_1">';
@@ -324,7 +322,7 @@ class Nirror extends Module
 			 * The API returns 200 (OK) if we are still granted access to the API with 
 			 * the access token we have stored in configuration table under the  
 			 * MODULE_NIRROR_OAUTH2_ACCESS_TOKEN key.
-			 * If the access token key is expired, a new grant is required.
+			 * If the access token is expired, a new grant is required.
 			*/
 			if ( $response['code'] == 200 )
 			{
