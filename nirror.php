@@ -381,10 +381,6 @@ class Nirror extends Module
 				$display_getaccesstoken = true;
 			}
 		}
-		else
-		{
-			$display_getaccesstoken = true;
-		}
 
 		// Form submit handling
 		if ( Tools::isSubmit('submitNirror') )
