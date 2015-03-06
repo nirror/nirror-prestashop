@@ -32,8 +32,8 @@ class Nirror extends Module
 */
 
 	const NIRROR_API_URI = 'https://api.nirror.com/v1/';
-	const NIRROR_API_KEY = '54e5c7003a678cd01b77a1b6';
-	const NIRROR_SECRET_KEY = 'tfd76Haux3KvFSQy5T2HupB1VGDngoTO6dzVKvsU0Ux31cmS';
+	const NIRROR_CLIENT_ID = '54e5c7003a678cd01b77a1b6';
+	const NIRROR_CLIENT_SECRET = 'tfd76Haux3KvFSQy5T2HupB1VGDngoTO6dzVKvsU0Ux31cmS';
 
 /*
  * 			SETUP, INSTALL, UNINSTALL
@@ -256,7 +256,7 @@ class Nirror extends Module
 
 		$redirect_uri = Tools::getHttpHost(true) . $this->unset_uri_var("code", $_SERVER['REQUEST_URI'] );
 
-		$client = new OAuth2\Client(Nirror::NIRROR_API_KEY, Nirror::NIRROR_SECRET_KEY);
+		$client = new OAuth2\Client(Nirror::NIRROR_CLIENT_ID, Nirror::NIRROR_CLIENT_SECRET);
 		$auth_url = $client->getAuthenticationUrl(Nirror::NIRROR_API_URI . 'oauth2/authorize', ($redirect_uri) );
 
 		// By default, do not request an authorization.
