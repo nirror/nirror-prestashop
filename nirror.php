@@ -1,11 +1,14 @@
 <?php
-/*
- * Author  : Antoine Dubourg
- * Email   : tcheko@no-log.org
- * Licence : WTFPL 
+/**
+ * Nirror for Prestashop
  * 
+ * @author    Antoine Dubourg
+ * @email     tcheko@no-log.org
+ * @copyright 2015
+ * @license   WTFPL 
+ *
  * For more information about Nirror, please visit http://www.nirror.com
- * 
+ *
  * The registering process in Nirror has been made to flow nicely:
  * 1. Clic 'Authenticate to Nirror Application' button
  * 2. Login to / Create your Nirror account
@@ -125,9 +128,7 @@ class Nirror extends Module
 				 */
 				if ( $this->context->customer->isLogged() && Configuration::get('MODULE_NIRROR_TRACE_LOGGED_USER') )
 				{
-					global $cookie;
-
-					$tag .= "Ni('user', 'username', '" . $cookie->email . "');\n";
+					$tag .= "Ni('user', 'username', '" . $this->context->customer->email . "');\n";
 					$tag .= "Ni('user', 'cid', '" . $this->context->customer->id . "');\n";
 				}
 				$tag .= "\n</script>";
@@ -290,7 +291,7 @@ class Nirror extends Module
 			}
 
 			// Reload the module without the code argument in the URI and pass the 
-			header('Location: ' . $redirect_uri . '&msg=' . $reply_code);
+			Tools::redirect('Location: ' . $redirect_uri . '&msg=' . $reply_code);
 			die();
 		}
 
@@ -417,7 +418,7 @@ class Nirror extends Module
 */
 
 	// Little function for removing argument in URL.
-	function unset_uri_var($variable, $uri)
+	private function unset_uri_var($variable, $uri)
 	{   
 		$parseUri = parse_url($uri);
 		$arrayUri = array();
