@@ -62,7 +62,12 @@ class Nirror extends Module
 
 	public function install()
 	{
-		if ( !parent::install() || !$this->registerHook('header') || !$this->nirror_createContent() )
+		if (
+			!parent::install() || 
+			!$this->registerHook('header') || 
+			!$this->nirror_createContent() || 
+			!function_exists('curl_init')
+		)
 		{
 			return false;
 		}
