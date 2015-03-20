@@ -10,5 +10,6 @@ all:
 	cp nirror.php nirror
 	cp logo.png nirror
 	cp -r OAuth2/ nirror/
+	cp Readme.md nirror/
 	zip -r nirror.zip nirror/
 	rm -rf nirror
