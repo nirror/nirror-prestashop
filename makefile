@@ -3,9 +3,6 @@ all:
 	-rm -rf nirror/
 	mkdir nirror
 	cp config.xml nirror/
-	cp config_fr.xml nirror/
-	cp config_es.xml nirror/
-	cp config_tr.xml nirror/
 	mkdir nirror/translations
 	cp translations/fr.php nirror/translations/
 	cp translations/es.php nirror/translations/
