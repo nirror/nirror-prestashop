@@ -1,1 +1,0 @@
-Nirror for Prestashop
