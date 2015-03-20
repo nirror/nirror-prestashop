@@ -43,10 +43,11 @@ class Nirror extends Module
 	{
 		$this->name = 'nirror';
 		$this->tab = 'analytics_stats';
-		$this->version = '1.1';
+		$this->version = '1.1.1';
 		$this->author = 'Antoine Dubourg';
 		$this->bootstrap = true;
 		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_); 
+		$this->module_key = "e06d08bb15951f208bfc480fdf543a03";
 
 		parent::__construct();
 
