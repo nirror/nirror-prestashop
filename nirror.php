@@ -305,6 +305,11 @@ class Nirror extends Module
 			break;
 		}
 
+		if ( !Configuration::get('MODULE_NIRROR_OAUTH2_ACCESS_TOKEN') )
+		{
+			$display_getaccesstoken = true;
+		}
+
 		/*
 		 * We have an access token. Let's try to do some Nirror API magic
 		 * only if Nirror for Prestashop has no Nirror Id to use.
