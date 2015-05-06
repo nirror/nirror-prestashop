@@ -291,7 +291,7 @@ class Nirror extends Module
 			}
 
 			// Reload the module without the code argument in the URI and pass the 
-			Tools::redirect('Location: ' . $redirect_uri . '&msg=' . $reply_code);
+			Tools::redirect($redirect_uri . '&msg=' . $reply_code);
 			die();
 		}
 
